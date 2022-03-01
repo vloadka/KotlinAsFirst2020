@@ -3,6 +3,7 @@
 package lesson4.task1
 
 import lesson1.task1.discriminant
+import kotlin.math.pow
 import kotlin.math.sqrt
 
 // Урок 4: списки
@@ -127,6 +128,7 @@ fun abs(v: List<Double>): Double = sqrt(v.sumOf { it * it })
  *
  * Рассчитать среднее арифметическое элементов списка list. Вернуть 0.0, если список пуст
  */
+
 fun mean(list: List<Double>): Double {
     var ar: Double = 0.0
     if (list.isEmpty()) ar = 0.0
@@ -135,6 +137,7 @@ fun mean(list: List<Double>): Double {
     }
     return ar
 }
+
 
 
 /**
@@ -183,7 +186,12 @@ fun polynom(p: List<Int>, x: Int): Int = TODO()
  *
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
-fun accumulate(list: MutableList<Int>): MutableList<Int> = TODO()
+fun accumulate(list: MutableList<Int>): MutableList<Int> {
+    for (i in 1 until list.size) {
+        list[i] += list[i - 1]
+    }
+    return list
+}
 
 /**
  * Средняя (3 балла)
@@ -241,12 +249,14 @@ fun factorizeToString(n: Int): String {
 fun convert(n: Int, base: Int): List<Int> {
     var x = n
     val result = mutableListOf<Int>()
+
     if (x == 0) result.add(0)
     else {
         while (x > 0) {
             result.add(x % base)
             x /= base
         }
+
     }
     return result.reversed()
 }
@@ -263,6 +273,7 @@ fun convert(n: Int, base: Int): List<Int> {
  * (например, n.toString(base) и подобные), запрещается.
  */
 fun convertToString(n: Int, base: Int): String {
+
     val number = convert(n, base)
     val alphabet = listOf(
         "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f", "g", "h", "i",
@@ -275,6 +286,7 @@ fun convertToString(n: Int, base: Int): String {
         s.append(symbol)
     }
     return s.toString()
+
 }
 
 /**
@@ -284,6 +296,7 @@ fun convertToString(n: Int, base: Int): String {
  * из системы счисления с основанием base в десятичную.
  * Например: digits = (1, 3, 12), base = 14 -> 250
  */
+
 fun pow(a: Int, b: Int): Int {
     if (b == 0)
         return 1
@@ -349,6 +362,7 @@ fun roman(n: Int): String {
             str.append(k)
             number -= v
         }
+
     }
     return str.toString()
 }

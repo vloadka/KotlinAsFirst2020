@@ -97,11 +97,13 @@ fun buildWordSet(text: List<String>): MutableSet<String> {
  *     -> mapOf(5 to listOf("Семён", "Михаил"), 3 to listOf("Марат"))
  */
 fun buildGrades(grades: Map<String, Int>): Map<Int, List<String>> {
+
     val result = mutableMapOf<Int, List<String>>()
     for ((name, grade) in grades)
         result[grade] = result.getOrDefault(grade, listOf()) + name
     return result
 }
+
 
 /**
  * Простая (2 балла)
@@ -115,6 +117,7 @@ fun buildGrades(grades: Map<String, Int>): Map<Int, List<String>> {
  */
 fun containsIn(a: Map<String, String>, b: Map<String, String>): Boolean {
     for ((key, value) in a) {
+
         var t = false
         for ((key2, value2) in b) {
             if (key == key2 && value == value2) {
@@ -124,6 +127,7 @@ fun containsIn(a: Map<String, String>, b: Map<String, String>): Boolean {
         }
         if (!t)
             return false
+
     }
     return true
 }
@@ -189,6 +193,7 @@ fun whoAreInBoth(a: List<String>, b: List<String>): List<String> {
  *     mapOf("Emergency" to "911", "Police" to "02")
  *   ) -> mapOf("Emergency" to "112, 911", "Police" to "02")
  */
+
 fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<String, String> {
     val mapOfSets = mutableMapOf<String, MutableSet<String>>()
     for ((k, v) in mapA) {
@@ -206,6 +211,7 @@ fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<S
         result[k] = v.joinToString(separator = ", ")
     }
     return result
+
 }
 
 /**
@@ -218,6 +224,7 @@ fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<S
  *   averageStockPrice(listOf("MSFT" to 100.0, "MSFT" to 200.0, "NFLX" to 40.0))
  *     -> mapOf("MSFT" to 150.0, "NFLX" to 40.0)
  */
+
 fun averageStockPrice(stockPrices: List<Pair<String, Double>>): Map<String, Double> {
     val map = mutableMapOf<String, MutableList<Double>>()
     val result = mutableMapOf<String, Double>()
@@ -234,6 +241,7 @@ fun averageStockPrice(stockPrices: List<Pair<String, Double>>): Map<String, Doub
     }
     return result
 }
+
 
 /**
  * Средняя (4 балла)
@@ -276,6 +284,7 @@ fun canBuildFrom(chars: List<Char>, word: String): Boolean = TODO()
  *   extractRepeats(listOf("a", "b", "a")) -> mapOf("a" to 2)
  */
 fun extractRepeats(list: List<String>): Map<String, Int> {
+
     val result = mutableMapOf<String, Int>()
     for (x in list) {
         if (x in result)
@@ -355,6 +364,7 @@ fun propagateHandshakes(friends: Map<String, Set<String>>): Map<String, Set<Stri
  *   findSumOfTwo(listOf(1, 2, 3), 6) -> Pair(-1, -1)
  */
 fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> {
+
     val result = Pair(-1, -1)
     val map = mutableMapOf<Int, Int>()
     for (i in list.indices) {
@@ -363,11 +373,10 @@ fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> {
         } else map[list[i]] = i
     }
     return result
+
 }
 
-/**
- * Очень сложная (8 баллов)
- *
+ /**
  * Входными данными является ассоциативный массив
  * "название сокровища"-"пара (вес сокровища, цена сокровища)"
  * и вместимость вашего рюкзака.

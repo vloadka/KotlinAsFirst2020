@@ -2,7 +2,9 @@
 
 package lesson7.task1
 
+
 import java.io.File
+import java.lang.StringBuilder
 
 // Урок 7: работа с файлами
 // Урок интегральный, поэтому его задачи имеют сильно увеличенную стоимость
@@ -63,6 +65,7 @@ fun alignFile(inputName: String, lineLength: Int, outputName: String) {
  * Подчёркивание в середине и/или в конце строк значения не имеет.
  */
 fun deleteMarked(inputName: String, outputName: String) {
+
     val file = File(inputName).readLines()
     val writer = File(outputName).bufferedWriter()
 
@@ -73,6 +76,7 @@ fun deleteMarked(inputName: String, outputName: String) {
         }
     }
     writer.close()
+
 }
 
 
@@ -85,8 +89,24 @@ fun deleteMarked(inputName: String, outputName: String) {
  * Регистр букв игнорировать, то есть буквы е и Е считать одинаковыми.
  *
  */
-fun countSubstrings(inputName: String, substrings: List<String>): Map<String, Int> = TODO()
-
+fun countSubstrings(inputName: String, substrings: List<String>): Map<String, Int> {
+    val map = mutableMapOf<String, Int>()
+    var index = 0
+    for (w in substrings) {
+        map[w] = 0
+        for (i in File(inputName).readLines()) {
+            index = 0
+            while (index != -1 && index < i.length) {
+                index = i.indexOf(w, index, true)
+                if (index != -1) {
+                    map[w] = map[w]!! + 1
+                    index++
+                }
+            }
+        }
+    }
+    return map
+}
 
 /**
  * Средняя (12 баллов)
@@ -255,6 +275,7 @@ fun hasDifferentLetters(word: String): Boolean {
  * Обратите внимание: данная функция не имеет возвращаемого значения
  */
 fun chooseLongestChaoticWord(inputName: String, outputName: String) {
+
     val file = File(inputName).readLines()
     var max = 0
     var words = mutableListOf<String>()
@@ -273,6 +294,7 @@ fun chooseLongestChaoticWord(inputName: String, outputName: String) {
     }
 
     File(outputName).writeText(words.joinToString(separator = ", "))
+
 
 }
 
@@ -546,4 +568,6 @@ fun printMultiplicationProcess(lhv: Int, rhv: Int, outputName: String) {
 fun printDivisionProcess(lhv: Int, rhv: Int, outputName: String) {
     TODO()
 }
+
+
 
