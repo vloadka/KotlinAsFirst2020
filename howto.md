@@ -15,7 +15,7 @@ git remote -v > remotes
 git add *  
 git commit -m "test"  
 git push  
-touch howto.md  
+git touch howto.md  
 git add *  
 git commit -m "howto"  
 git push  
